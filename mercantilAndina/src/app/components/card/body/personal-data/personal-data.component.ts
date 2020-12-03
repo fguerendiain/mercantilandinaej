@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as messages from '../../../../../messages.json';
 
 @Component({
   selector: 'app-personal-data',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalDataComponent implements OnInit {
 
+  headerTitle: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.headerTitle = messages.PersonalDataComponentHeaderTitle;
   }
 
 }

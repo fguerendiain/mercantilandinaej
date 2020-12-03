@@ -32,8 +32,8 @@
     "ErrorValidateUserBirthDayToYoung": "Debe ser mayor de 18 años",
     "ErrorValidateUserBirthDayToOld": "Debe ser menor de 99 años",
     "ErrorValidateUserPassword": "La contraseña no es valida",
-    "ErrorValidateUserPasswordStrength": "La contraseña debe tener 8 caracteres, uno especial, ser alfanumerica con mayusculas y minusculas"
-
+    "ErrorValidateUserPasswordStrength": "La contraseña debe tener 8 caracteres, uno especial, ser alfanumerica con mayusculas y minusculas",
+    "PersonalDataComponentHeaderTitle": "Ingrese sus datos personales"
 
 
 }

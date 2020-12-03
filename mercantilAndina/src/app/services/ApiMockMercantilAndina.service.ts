@@ -1,9 +1,11 @@
-import {HttpClient} from '@angular/common/http';
-import * as messages from '../../messages';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import * as messages from '../../messages.json';
 import { Coverage } from '../entities/General.model';
 
 const BASE_API = 'https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1';
 
+@Injectable({ providedIn: 'root' })
 export class ApiMockMercantilAndinaService {
 
   constructor(private http: HttpClient){}
@@ -14,7 +16,7 @@ export class ApiMockMercantilAndinaService {
       const wrapper: boolean = await this.http.get<boolean>(BASE_API + path).toPromise();
       return wrapper;
     }catch (error){
-      throw new Error(messages.get('ErrorGetUserNameAvailability'));
+      throw new Error(messages.ErrorGetUserNameAvailability);
     }
   }
 
@@ -24,7 +26,7 @@ export class ApiMockMercantilAndinaService {
       const wrapper: Coverage[] = await this.http.get<Coverage[]>(BASE_API + path).toPromise();
       return wrapper;
     }catch (error){
-      throw new Error(messages.get('ErrorGetInsuranceCoverage'));
+      throw new Error(messages.ErrorGetInsuranceCoverage);
     }
   }
 }

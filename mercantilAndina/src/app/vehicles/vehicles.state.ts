@@ -4,13 +4,12 @@ import { VehicleStateModel } from './vehicles.models';
 import { InitVehicleModels, InitVehiclesBrands, InitVehicleVersions } from './vehicles.actions';
 import { ApiMercantilAndinaService } from '../services/ApiMercantilAndina.service';
 import { CodeDescription } from '../entities/General.model';
-import { UserStateModel, UserVehicle } from '../user/user.models';
+import { UserVehicle } from '../user/user.models';
 import { UserState } from '../user/user.state';
 import produce from 'immer';
-import { stringify } from 'querystring';
 
 @State<VehicleStateModel>({
-  name: 'provincias',
+  name: 'vehicles',
   defaults: {
     marcas: [],
     modelos: [],
