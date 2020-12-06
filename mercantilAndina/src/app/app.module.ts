@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/card/header/header.component';
 import { BodyComponent } from './components/card/body/body.component';
 import { PersonalDataComponent } from './components/card/body/personal-data/personal-data.component';
@@ -38,7 +37,6 @@ import { PaginatorComponent } from './components/card/paginator/paginator.compon
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent,
     HeaderComponent,
     BodyComponent,
     PersonalDataComponent,

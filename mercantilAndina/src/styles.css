@@ -4,7 +4,14 @@ body {
     background: url('./assets/bg_merantil.png') repeat #072a37;
     background-repeat: no-repeat;
     width: 100%;
-    padding: 2rem 20rem;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.container .cardGlobal {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .must {

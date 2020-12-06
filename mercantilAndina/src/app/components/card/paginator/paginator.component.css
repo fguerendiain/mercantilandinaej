@@ -3,8 +3,8 @@
 }
 
 .item {
-    min-width: 1.5rem;
-    min-height: 1.5rem;
+    min-width: 2rem;
+    min-height: 2rem;
     border-radius: 100%;
     margin: 0 1.5rem;
     background-color: rgba(0, 0, 0, 0.6);
@@ -18,7 +18,5 @@
 }
 
 .item.active {
-    min-width: 2rem;
-    min-height: 2rem;
     background-color: rgba(16, 16, 151, 0.342);
 }
