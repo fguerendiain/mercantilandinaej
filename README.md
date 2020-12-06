@@ -1,2 +1,24 @@
-# mercantilAndinaEj
+# MercantilAndina Ejercicio Parctico
 
+>Portal de Alta de usuario:
+>
+>A través de la construcción del ejercicio planteado se busca conocer sus skills y hábitos de
+>trabajo relacionado a un desarrollo cotidiano:
+>
+>Realizar una aplicación en Angular (6+) que contenga un componente formulario “wizard”
+>representando el alta de un asegurado, que consta de 4 pasos:
+>
+>1. Datos personales
+>
+>2. Datos de su vehículo
+>
+>3. Coberturas disponibles
+>
+>4. Resumen
+
+Para el desarrollo se utilizo:
+
+-Angular (6+)
+-Store bajo concepto Redux mediante la libreria NGSX.
+-Ng-Bootstrap: Angular Wrapper
+-Libphonenumber-js: (Validacion de numeros telefonicos)
