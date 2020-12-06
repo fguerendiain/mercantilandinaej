@@ -18,7 +18,7 @@
 
 Para el desarrollo se utilizo:
 
--Angular (6+)
--Store bajo concepto Redux mediante la libreria NGSX.
--Ng-Bootstrap: Angular Wrapper
--Libphonenumber-js: (Validacion de numeros telefonicos)
+ - Angular (6+)
+ - Store bajo concepto Redux mediante la libreria NGSX.
+ - Ng-Bootstrap: Angular Wrapper
+ - Libphonenumber-js: (Validacion de numeros telefonicos)
