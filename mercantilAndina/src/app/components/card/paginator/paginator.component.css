@@ -1,0 +1,24 @@
+.paginator {
+    align-items: center;
+}
+
+.item {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    border-radius: 100%;
+    margin: 0 1.5rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+}
+
+.item:hover {
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.item.active {
+    min-width: 2rem;
+    min-height: 2rem;
+    background-color: rgba(16, 16, 151, 0.342);
+}

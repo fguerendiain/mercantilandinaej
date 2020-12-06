@@ -1,0 +1,122 @@
+<div class="cardContainer">
+    <app-header [headerText]="headerTitle"></app-header>
+
+    <div *ngIf="(readyToGo$ | async) else noReady">
+        <div class="card m-2">
+            <div class="card-header d-flex justify-content-center">
+                <div class="card-title d-flex justify-content-center align-content-center p-2">
+                    <h4 class="p-1">
+                        {{(fullDetail$ | async).usuario.apellido}}, {{(fullDetail$ | async).usuario.nombre}}
+                    </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{dniLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.dni}}</p>
+                </div>
+                <div *ngIf="(fullDetail$ | async).usuario.fechNac">
+                    <div class="d-flex justify-content-center align-content-center">
+                        <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{fechaLable}}</small>
+                        <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.fechNac | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                </div>
+
+                <div *ngIf="(fullDetail$ | async).usuario.email">
+                    <div class="d-flex justify-content-center align-content-center">
+                        <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{emailLable}}</small>
+                        <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.email}}</p>
+                    </div>
+                </div>
+
+                <div *ngIf="(fullDetail$ | async).usuario.celular">
+                    <div class="d-flex justify-content-center align-content-center">
+                        <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{celularLable}}</small>
+                        <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.celular}}</p>
+                    </div>
+                </div>
+                <div *ngIf="(fullDetail$ | async).usuario.telefono">
+                    <div class="d-flex justify-content-center align-content-center">
+                        <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{telefonoLable}}</small>
+                        <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.telefono}}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{domicilioLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">
+                        {{(fullDetail$ | async).usuario.provincia.desc}}, {{(fullDetail$ | async).usuario.ciudad.desc}}, {{(fullDetail$ | async).usuario.domicilio}}</p>
+                </div>
+
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{userLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.userName}}</p>
+                </div>
+
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{passwordLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).usuario.password}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2">
+            <div class="card-header d-flex justify-content-center">
+                <div class="card-title d-flex justify-content-center align-content-center p-2">
+                    <h4 class="p-1">
+                        {{(fullDetail$ |async).vehiculo.marca.desc}}
+                    </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{modeloLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).vehiculo.modelo}}</p>
+                </div>
+
+                <div class="d-flex justify-content-center align-content-center">
+                    <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{yearLable}}</small>
+                    <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ | async).vehiculo.year}}</p>
+                </div>
+                <div *ngIf="(fullDetail$ | async).vehiculo.version">
+                    <div class="d-flex justify-content-center align-content-center">
+                        <small class="text-muted col-5 col-sm-7	col-md-4	col-lg-4	col-xl-3">{{versionLable}}</small>
+                        <p class="card-text col-7 col-sm-5	col-md-8	col-lg-8	col-xl-9">{{(fullDetail$ |async).vehiculo.version.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2">
+            <app-coverage-card-body [coverage]="(fullDetail$ | async).cobertura"></app-coverage-card-body>
+        </div>
+        <div class="d-flex justify-content-center align-content-center">
+            <button type="button" class="btn btn-primary" (click)="onSubmmit()">{{submmitBtnLable}}</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #noReady>
+    <div class="card m-5 p-3">
+        <div class="d-flex justify-content-center align-content-center">
+            <h3>{{warningTitle}}</h3>
+        </div>
+        <div class="d-flex justify-content-center align-content-center pb-1">
+            <img class="warningImg" src="../../../../../assets/warning.png" alt="">
+        </div>
+        <div class="d-flex justify-content-center align-content-center pt-3">
+            <p class="text-center">{{warningMessage}}</p>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #submmit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modalTitleLable}}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{modalMessage}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close(true)" [disabled]="!showCloseModal">{{closeModalBtnLable}}</button>
+    </div>
+</ng-template>

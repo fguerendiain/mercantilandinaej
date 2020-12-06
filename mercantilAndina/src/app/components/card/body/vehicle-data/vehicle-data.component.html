@@ -1,0 +1,50 @@
+<div class="cardContainer">
+    <app-header [headerText]="headerTitle"></app-header>
+    <div class="card-body cardStyle">
+        <app-validation-error-lable [errorMsg]="marcaErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{marcaLable}}<div *ngIf="marcaNgModel else requiredField"></div></span>
+            </div>
+            <select class="custom-select" id="inputGroupSelectBrands" ng-required="true" [compareWith]="defaultSelectItem" [(ngModel)]="marcaNgModel" (ngModelChange)="onSetMarca()">
+            <option *ngFor="let brand of brandsList$ | async" [ngValue]="brand">{{brand.desc}}</option>
+          </select>
+            <div *ngIf="!(brandsList$ | async).length" class="input-group-prepend">
+                <span class="input-group-text  p-0"><button type="button" class="btn p-0" (click)="onReloadService()"><i class="fas fa-sync"></i></button></span>
+            </div>
+        </div>
+        <app-validation-error-lable [errorMsg]="yearErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3" *ngIf="marcaNgModel">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{yearLable}}<div *ngIf="yearNgModel else requiredField"></div></span>
+            </div>
+            <select class="custom-select" id="inputGroupSelectBrands" ng-required="true" [(ngModel)]="yearNgModel" (ngModelChange)="onSetYear()">
+            <option *ngFor="let year of yearsList$ | async" [ngValue]="yearNgModel ? yearNgModel : year">{{year}}</option>
+          </select>
+        </div>
+        <app-validation-error-lable [errorMsg]="modeloErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3" *ngIf="marcaNgModel && yearNgModel">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{modeloLable}}<div *ngIf="modeloNgModel else requiredField"></div></span>
+            </div>
+            <select class="custom-select" id="inputGroupSelectModels" ng-required="true" [(ngModel)]="modeloNgModel" (ngModelChange)="onSetModel()">
+            <option *ngFor="let model of modelsList$ | async" [ngValue]="modeloNgModel ? modeloNgModel : model">{{model}}</option>
+          </select>
+        </div>
+        <app-validation-error-lable [errorMsg]="versionErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3" *ngIf="(marcaNgModel && yearNgModel && modeloNgModel)">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{versionLable}}</span>
+            </div>
+            <select class="custom-select" id="inputGroupSelectVersions" [compareWith]="defaultSelectItem" [(ngModel)]="versionNgModel" (ngModelChange)="onSetVersion()">
+            <option *ngFor="let version of versionsList$ | async" [ngValue]="version">{{version.desc}}</option>
+          </select>
+        </div>
+    </div>
+</div>
+
+<ng-template #requiredField>
+    <div class="must">
+        *
+    </div>
+</ng-template>

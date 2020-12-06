@@ -1,0 +1,6 @@
+.errorLable {
+    background-color: rgba(255, 0, 0, 0.315);
+    color: white;
+    border-radius: 5px;
+    padding: .2rem;
+}

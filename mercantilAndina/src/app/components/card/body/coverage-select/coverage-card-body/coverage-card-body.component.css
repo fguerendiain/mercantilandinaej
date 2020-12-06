@@ -1,0 +1,35 @@
+.imgContainer img {
+    width: 2rem;
+    height: auto;
+}
+
+@media (max-width: 576px) {
+    .imgContainer img {
+        width: .5rem;
+    }
+    .small,
+    small {
+        font-size: 60%;
+    }
+    h4 {
+        font-size: medium;
+    }
+}
+
+@media (max-width: 768px) {
+    .imgContainer img {
+        width: 1rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    h4 {
+        font-size: large;
+    }
+}
+
+@media (max-width: 1200px) {
+    .imgContainer img {
+        width: 1.5rem;
+    }
+}
