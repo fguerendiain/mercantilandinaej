@@ -10,3 +10,7 @@ export class InitVehicleModels {
 export class InitVehicleVersions {
   static readonly type = '[Vehicles] Inicializar versiones del Vehiculo';
 }
+
+export class InitVehicleYears {
+  static readonly type = '[Vehicles] Inicializar años de Vehiculos';
+}

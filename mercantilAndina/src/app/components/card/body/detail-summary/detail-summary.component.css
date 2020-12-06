@@ -1,0 +1,23 @@
+h6.subTitle {
+    font-size: medium;
+}
+
+img.warningImg {
+    width: 5rem;
+}
+
+@media (max-width: 576px) {}
+
+@media (max-width: 768px) {
+    p.card-text {
+        font-size: 60%;
+    }
+}
+
+@media (max-width: 1080px) {
+    p.card-text {
+        font-size: 70%;
+    }
+}
+
+@media (max-width: 1200px) {}

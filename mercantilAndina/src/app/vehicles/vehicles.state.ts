@@ -1,7 +1,7 @@
 import { Action, createSelector, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { VehicleStateModel } from './vehicles.models';
-import { InitVehicleModels, InitVehiclesBrands, InitVehicleVersions } from './vehicles.actions';
+import { InitVehicleModels, InitVehiclesBrands, InitVehicleVersions, InitVehicleYears } from './vehicles.actions';
 import { ApiMercantilAndinaService } from '../services/ApiMercantilAndina.service';
 import { CodeDescription } from '../entities/General.model';
 import { UserVehicle } from '../user/user.models';
@@ -12,6 +12,7 @@ import produce from 'immer';
   name: 'vehicles',
   defaults: {
     marcas: [],
+    years: [],
     modelos: [],
     versiones: []
   }
@@ -50,12 +51,13 @@ export class VehicleState {
 
 
   @Selector()
-  static GetMarcas(state: VehicleStateModel): string[] {
-    const result: string[] = [];
-    state.marcas.forEach((brand) => {
-      result.push(brand.codigo);
-    });
-    return result;
+  static GetMarcas(state: VehicleStateModel): CodeDescription[] {
+    return state.marcas;
+  }
+
+  @Selector()
+  static GetYears(state: VehicleStateModel): string[] {
+    return state.years;
   }
 
   @Selector()
@@ -64,12 +66,8 @@ export class VehicleState {
   }
 
   @Selector()
-  static GetVersiones(state: VehicleStateModel): string[] {
-    const result: string[] = [];
-    state.versiones.forEach((ver) => {
-      result.push(ver.codigo);
-    });
-    return result;
+  static GetVersiones(state: VehicleStateModel): CodeDescription[] {
+    return state.versiones;
   }
 
   constructor(private service: ApiMercantilAndinaService, private store: Store){}
@@ -79,30 +77,31 @@ export class VehicleState {
     const brandArray: CodeDescription[] = [];
     const result = await this.service.getCarBrands();
     result.forEach((brand) => {
-      brandArray.push({
-        codigo: brand.codigo,
-        desc: brand.desc,
-      });
+      if (+brand.codigo > 0){
+        brandArray.push({
+          codigo: brand.codigo,
+          desc: brand.desc,
+        });
+      }
     });
-    return ctx.setState({
-      marcas: brandArray,
-      modelos: [],
-      versiones: [],
-    });
+    return ctx.setState(
+      produce(ctx.getState(), draft => {
+        draft.marcas = brandArray;
+      })
+    );
   }
 
   @Action(InitVehicleModels)
   async initVehicleModels(ctx: StateContext<VehicleStateModel>): Promise<VehicleStateModel> {
     const modelsArray: string[] = [];
     const userVehicle: UserVehicle = this.store.selectSnapshot(UserState.GetUserVehicleDetail);
-    const result = await this.service.getCarModels(userVehicle.marca, userVehicle.year);
+    const result = await this.service.getCarModels(userVehicle.marca.codigo, userVehicle.year);
     result.forEach((mod) => {
       modelsArray.push(mod);
     });
     return ctx.setState(
       produce(ctx.getState(), draft => {
         draft.modelos = modelsArray;
-        draft.versiones = [];
       })
     );
   }
@@ -111,7 +110,7 @@ export class VehicleState {
   async initVehicleVersions(ctx: StateContext<VehicleStateModel>): Promise<VehicleStateModel> {
     const versionsArray: CodeDescription[] = [];
     const userVehicle: UserVehicle = this.store.selectSnapshot(UserState.GetUserVehicleDetail);
-    const result = await this.service.getCarVersion(userVehicle.marca, userVehicle.year, userVehicle.modelo);
+    const result = await this.service.getCarVersion(userVehicle.marca.codigo, userVehicle.year, userVehicle.modelo);
     result.forEach((ver) => {
       versionsArray.push({
         codigo: ver.codigo,
@@ -125,5 +124,23 @@ export class VehicleState {
     );
   }
 
+  @Action(InitVehicleYears)
+  async initVehicleYears(ctx: StateContext<VehicleStateModel>): Promise<VehicleStateModel> {
+    const result = this.setYearsList();
+    return ctx.setState(
+      produce(ctx.getState(), draft => {
+        draft.years = result;
+      })
+    );
+  }
+
+  setYearsList(): string[]{
+    const result: string[] = [];
+    const today = new Date().getFullYear();
+    for (let i = today - 20 ; i <= today; i++){
+      result.push(i.toString());
+    }
+    return result;
+  }
 }
 

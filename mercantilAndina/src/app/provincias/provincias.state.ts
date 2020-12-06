@@ -6,6 +6,7 @@ import { ApiServGeoNormalizacionService } from '../services/ApiServGeoNormalizac
 import { CodeDescription } from '../entities/General.model';
 import { UserState } from '../user/user.state';
 import produce from 'immer';
+import { state } from '@angular/animations';
 
 @State<ProvinciasStateModel>({
   name: 'provincias',
@@ -18,7 +19,7 @@ import produce from 'immer';
 @Injectable()
 export class ProvinciasState {
 
-  static GetProvinciaByProductId(idProvincia: string): (state: ProvinciasStateModel) => string {
+  static GetProvinciaById(idProvincia: string): (state: ProvinciasStateModel) => string {
     return createSelector(
       [ProvinciasState],
       (state: ProvinciasStateModel) => {
@@ -32,7 +33,7 @@ export class ProvinciasState {
     );
   }
 
-  static GetMunicipalidadByProductId(idMunicipalidad: string): (state: ProvinciasStateModel) => string {
+  static GetMunicipalidadById(idMunicipalidad: string): (state: ProvinciasStateModel) => string {
     return createSelector(
       [ProvinciasState],
       (state: ProvinciasStateModel) => {
@@ -47,21 +48,13 @@ export class ProvinciasState {
   }
 
   @Selector()
-  static GetProvincias(state: ProvinciasStateModel): string[] {
-    const result: string[] = [];
-    state.provincias.forEach((prov) => {
-      result.push(prov.codigo);
-    });
-    return result;
+  static GetProvincias(state: ProvinciasStateModel): CodeDescription[] {
+    return state.provincias;
   }
 
   @Selector()
-  static GetMunicipios(state: ProvinciasStateModel): string[] {
-    const result: string[] = [];
-    state.municipios.forEach((muni) => {
-      result.push(muni.codigo);
-    });
-    return result;
+  static GetMunicipios(state: ProvinciasStateModel): CodeDescription[] {
+    return state.municipios;
   }
 
   constructor(private service: ApiServGeoNormalizacionService, private store: Store){}
@@ -76,17 +69,18 @@ export class ProvinciasState {
         desc: prov.nombre
       });
     });
-    return ctx.setState({
-      provincias: provArray,
-      municipios: []
-    });
+    return ctx.setState(
+      produce(ctx.getState(), draft => {
+        draft.provincias = provArray;
+      })
+    );
   }
 
   @Action(InitMunicipios)
   async initMunicipios(ctx: StateContext<ProvinciasStateModel>): Promise<ProvinciasStateModel> {
     const muniArray: CodeDescription[] = [];
-    const userProvincia: string = this.store.selectSnapshot(UserState.GetUserProvincia);
-    const result = await this.service.getMunicipios(userProvincia);
+    const userProvincia: CodeDescription = this.store.selectSnapshot(UserState.GetUserProvincia);
+    const result = await this.service.getMunicipios(userProvincia.codigo);
     result.municipios.forEach((muni) => {
       muniArray.push({
         codigo: muni.id,

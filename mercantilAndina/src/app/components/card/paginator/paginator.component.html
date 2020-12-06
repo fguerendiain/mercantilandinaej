@@ -1,0 +1,6 @@
+<div class="paginator d-flex justify-content-center align-content-center p-5">
+    <div [ngClass]="{'active': pagePersonalData.codigo === activeId }" class="item p-2" (click)="onClickPage(pagePersonalData)">1</div>
+    <div [ngClass]="{'active': pageVehicleData.codigo === activeId }" class="item p-2" (click)="onClickPage(pageVehicleData)">2</div>
+    <div [ngClass]="{'active': pageCoverageData.codigo === activeId }" class="item p-2" (click)="onClickPage(pageCoverageData)">3</div>
+    <div [ngClass]="{'active': pageDetailSummary.codigo === activeId }" class="item p-2" (click)="onClickPage(pageDetailSummary)">4</div>
+</div>

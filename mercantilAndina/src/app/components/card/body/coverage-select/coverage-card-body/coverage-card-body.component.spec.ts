@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RowComponent } from './row.component';
+import { CoverageCardBodyComponent } from './coverage-card-body.component';
 
-describe('RowComponent', () => {
-  let component: RowComponent;
-  let fixture: ComponentFixture<RowComponent>;
+describe('CoverageCardBodyComponent', () => {
+  let component: CoverageCardBodyComponent;
+  let fixture: ComponentFixture<CoverageCardBodyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RowComponent ]
+      declarations: [ CoverageCardBodyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RowComponent);
+    fixture = TestBed.createComponent(CoverageCardBodyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

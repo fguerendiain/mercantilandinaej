@@ -1,4 +1,4 @@
-import { Coverage } from '../entities/General.model';
+import { CodeDescription, Coverage } from '../entities/General.model';
 
 export interface UserData {
   dni: string;
@@ -7,8 +7,8 @@ export interface UserData {
   email?: string;
   celular?: string;
   telefono?: string;
-  provincia: string;
-  ciudad: string;
+  provincia: CodeDescription;
+  ciudad: CodeDescription;
   domicilio: string;
   fechNac: Date;
   userName: string;
@@ -16,14 +16,15 @@ export interface UserData {
 }
 
 export interface UserVehicle {
-  marca: string;
+  marca: CodeDescription;
   year: string;
   modelo: string;
-  version?: string;
+  version?: CodeDescription;
 }
 
 export interface UserStateModel {
   usuario: UserData;
   vehiculo: UserVehicle;
-  covertura: Coverage;
+  cobertura: Coverage;
 }
+

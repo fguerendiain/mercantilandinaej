@@ -1,3 +1,7 @@
-.header {
-    text-align: center;
+.card-header {
+    color: white;
+    font-weight: bolder;
+    font-size: large;
+    background-color: rgba(16, 16, 151, 0.342);
+    border-radius: .3rem;
 }

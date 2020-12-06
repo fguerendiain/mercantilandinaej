@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background: url('./assets/bg_merantil.png') repeat #072a37;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 2rem 20rem;
+}
+
+.must {
+    color: red;
+    font-size: small;
+    padding-left: .3rem;
+    justify-content: end;
+    margin-top: 0;
+}

@@ -1,5 +1,5 @@
 import { UserStateModel} from './user.models';
-import { Coverage } from '../entities/General.model';
+import { Coverage, CodeDescription } from '../entities/General.model';
 
 export class InitUser {
   static readonly type = '[User] Inicializar Usuario';
@@ -43,12 +43,12 @@ export class ModifyUserTelefono {
 
 export class ModifyUserProvincia {
   static readonly type = '[User] Modificar Usuario: provincia';
-  public constructor(public provincia: string){}
+  public constructor(public provincia: CodeDescription){}
 }
 
 export class ModifyUserCiudad {
   static readonly type = '[User] Modificar Usuario: ciudad';
-  public constructor(public ciudad: string){}
+  public constructor(public ciudad: CodeDescription){}
 }
 
 export class ModifyUserDomicilio {
@@ -78,7 +78,7 @@ export class ModifyUserCoverage {
 
 export class ModifyUserVehicleMarca  {
   static readonly type = '[User] Modificar Vehiculo de Usuario: marca';
-  public constructor(public marca: string){}
+  public constructor(public marca: CodeDescription){}
 }
 
 export class ModifyUserVehicleYear  {
@@ -93,5 +93,5 @@ export class ModifyUserVehicleModelo  {
 
 export class ModifyUserVehicleVersion  {
   static readonly type = '[User] Modificar Vehiculo de Usuario: version';
-  public constructor(public version: string){}
+  public constructor(public version: CodeDescription){}
 }

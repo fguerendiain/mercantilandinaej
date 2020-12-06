@@ -1,27 +1,26 @@
-# MercantilAndina
+# MercantilAndina Ejercicio Parctico
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+[![N|Solid](url(https://lh6.googleusercontent.com/WBAgrwVev9k_26rtCE9F7eVIo8Mnj7eQpkThquETLgdAN6Ucgn5wb50GNAQXFOXNZk-f2d6tReHS7PTW_Lczrb6g4RMI7aXLoSi2RqkAefXkttxcbymiU_XsssRV=w3306))](https://nodesource.com/products/nsolid)
 
-## Development server
+>Portal de Alta de usuario:
+>
+>A través de la construcción del ejercicio planteado se busca conocer sus skills y hábitos de
+>trabajo relacionado a un desarrollo cotidiano:
+>
+>Realizar una aplicación en Angular (6+) que contenga un componente formulario “wizard”
+>representando el alta de un asegurado, que consta de 4 pasos:
+>
+>1. Datos personales
+>
+>2. Datos de su vehículo
+>
+>3. Coberturas disponibles
+>
+>4. Resumen
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para el desarrollo se utilizo:
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+-Angular (6+)
+-Store bajo concepto Redux mediante la libreria NGSX.
+-Ng-Bootstrap: Angular Wrapper
+-Libphonenumber-js: (Validacion de numeros telefonicos)

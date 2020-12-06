@@ -1,4 +1,81 @@
-<app-header [headerText]="headerTitle"></app-header>
-<div class="card-body">
-    <input>
+<div class="cardContainer">
+    <app-header [headerText]="headerTitle"></app-header>
+    <div class="card-body cardStyle">
+        <app-validation-error-lable [errorMsg]="dniErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{dniLable}}<div *ngIf="dniNgModel else requiredField"></div></span>
+            </div>
+            <input type="text" class="form-control" maxlength="8" minlength="7" (keypress)="numberOnly($event)" [(ngModel)]="dniNgModel" (change)="onSetDni()">
+        </div>
+        <app-validation-error-lable [errorMsg]="apellidoErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{apellidoLable}}<div *ngIf="apellidoNgModel else requiredField"></div></span>
+            </div>
+            <input type="text" class="form-control" maxlength="15" minlength="2" (keypress)="alphaOnly($event)" [(ngModel)]="apellidoNgModel" (change)="onSetApellido()">
+        </div>
+        <app-validation-error-lable [errorMsg]="nombreErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{nombreLable}}<div *ngIf="nombreNgModel else requiredField"></div></span>
+            </div>
+            <input type="text" class="form-control" maxlength="15" minlength="2" (keypress)="alphaOnly($event)" [(ngModel)]="nombreNgModel" (change)="onSetNombre()">
+        </div>
+        <app-validation-error-lable [errorMsg]="emailErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{emailLable}}</span>
+            </div>
+            <input type="text" class="form-control" maxlength="30" (keypress)="noSpaces($event)" [(ngModel)]="emailNgModel" (change)="onSetEmail()">
+        </div>
+        <app-validation-error-lable [errorMsg]="celularErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{celularLable}}</span>
+            </div>
+            <input type="text" class="form-control" maxlength="20" (keypress)="noSpaces($event)" [(ngModel)]="celularNgModel" (change)="onSetCelular()">
+        </div>
+        <app-validation-error-lable [errorMsg]="telefonoErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{telefonoLable}}</span>
+            </div>
+            <input type="text" class="form-control" maxlength="20" (keypress)="noSpaces($event)" [(ngModel)]="telefonoNgModel" (change)="onSetTelefono()">
+        </div>
+        <app-ubicacion-data></app-ubicacion-data>
+        <app-validation-error-lable [errorMsg]="fechNacErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{fechNacLable}}</span>
+            </div>
+            <input type="date" class="form-control" [(ngModel)]="fechNacNgModel" (change)="onSetFechNac()">
+        </div>
+        <app-validation-error-lable [errorMsg]="usuarioErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{usuarioLable}}<div *ngIf="usuarioNgModel else requiredField"></div></span>
+            </div>
+            <input type="text" class="form-control" maxlength="30" minlength="2" (keypress)="noSpaces($event)" [(ngModel)]="usuarioNgModel" (change)="onSetUsuario()">
+        </div>
+        <app-validation-error-lable [errorMsg]="passwordErrorMsg"></app-validation-error-lable>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{passwordLable}}<div *ngIf="passwordNgModel else requiredField"></div></span>
+            </div>
+            <input type="password" class="form-control" maxlength="30" (keypress)="noSpaces($event)" [(ngModel)]="passwordNgModel" (change)="onSetPassword()">
+            <span class="input-group-text">
+              <div class="d-flex">
+                <app-password-strength-meter [(passwordInput)]="passwordNgModel"></app-password-strength-meter>
+              </div>
+            </span>
+        </div>
+    </div>
 </div>
+
+
+<ng-template #requiredField>
+    <div class="must">
+        *
+    </div>
+</ng-template>

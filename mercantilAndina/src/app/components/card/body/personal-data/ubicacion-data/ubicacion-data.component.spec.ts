@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PortalComponent } from './portal.component';
+import { UbicacionDataComponent } from './ubicacion-data.component';
 
-describe('PortalComponent', () => {
-  let component: PortalComponent;
-  let fixture: ComponentFixture<PortalComponent>;
+describe('UbicacionDataComponent', () => {
+  let component: UbicacionDataComponent;
+  let fixture: ComponentFixture<UbicacionDataComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PortalComponent ]
+      declarations: [ UbicacionDataComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PortalComponent);
+    fixture = TestBed.createComponent(UbicacionDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

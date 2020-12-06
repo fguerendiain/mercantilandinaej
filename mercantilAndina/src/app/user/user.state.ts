@@ -20,15 +20,50 @@ import { DropUser,
 import { UserStateModel, UserVehicle } from './user.models';
 import produce from 'immer';
 import { ModifyUserProvincia, ModifyUserCiudad, ModifyUserDomicilio } from './user.actions';
+import { VehicleState } from '../vehicles/vehicles.state';
+import { ProvinciasState } from '../provincias/provincias.state';
+import { VehicleStateModel } from '../vehicles/vehicles.models';
+import { ProvinciasStateModel } from '../provincias/provincias.models';
+import { Municipio, CodeDescription } from '../entities/General.model';
 
+const def: UserStateModel =  {
+  usuario: {
+    dni:  null,
+    apellido:  null,
+    nombre:  null,
+    email:  null,
+    celular:  null,
+    telefono:  null,
+    provincia:  null,
+    ciudad:  null,
+    domicilio:  null,
+    fechNac:  null,
+    userName:  null,
+    password:  null
+  },
+  vehiculo: {
+    marca: null,
+    year: null,
+    modelo: null,
+    version: null
+  },
+  cobertura: {
+    numero:  null,
+    costo:  null,
+    producto:  null,
+    texto:  null,
+    franquicia:  null,
+    codigoProducto:  null,
+    titulo:  null,
+    descripcion:  null,
+    puntaje:  null,
+    granizo:  null
+  }
+};
 
 @State<UserStateModel>({
   name: 'user',
-  defaults: {
-    usuario: null,
-    vehiculo: null,
-    covertura: null
-  }
+  defaults: def
 })
 
 @Injectable()
@@ -36,8 +71,13 @@ export class UserState {
 
 
   @Selector()
-  static GetUserProvincia(state: UserStateModel): string {
+  static GetUserProvincia(state: UserStateModel): CodeDescription {
     return state.usuario.provincia;
+  }
+
+  @Selector()
+  static GetUserCoverage(state: UserStateModel): number {
+    return state.cobertura.codigoProducto;
   }
 
   @Selector()
@@ -60,7 +100,7 @@ export class UserState {
       && state.usuario.domicilio
       && state.usuario.userName
       && state.usuario.password
-      && state.covertura
+      && state.cobertura.codigoProducto
       && state.vehiculo.marca
       && state.vehiculo.year
       && state.vehiculo.modelo){
@@ -76,16 +116,16 @@ export class UserState {
       return ctx.setState({
         usuario: action.user.usuario,
         vehiculo: action.user.vehiculo,
-        covertura: action.user.covertura
+        cobertura: action.user.cobertura
       });
   }
 
   @Action(DropUser)
   DropUserState(ctx: StateContext<UserStateModel>): UserStateModel {
-      return ctx.setState({
-        usuario: null,
-        vehiculo: null,
-        covertura: null
+      return  ctx.setState({
+        usuario: def.usuario,
+        vehiculo: def.vehiculo,
+        cobertura: def.cobertura
       });
   }
 
@@ -201,7 +241,7 @@ export class UserState {
   modifyUserCoverage(ctx: StateContext<UserStateModel>, action: ModifyUserCoverage): UserStateModel {
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.covertura = action.coverage;
+        draft.cobertura = action.coverage;
       })
     );
   }
@@ -210,7 +250,7 @@ export class UserState {
   modifyUserVehicleMarca(ctx: StateContext<UserStateModel>, action: ModifyUserVehicleMarca): UserStateModel {
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.vehiculo.marca = action.marca;
+        draft.vehiculo.marca = action.marca ?? null;
       })
     );
   }
@@ -219,7 +259,7 @@ export class UserState {
   modifyUserVehicleYear(ctx: StateContext<UserStateModel>, action: ModifyUserVehicleYear): UserStateModel {
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.vehiculo.year = action.year;
+        draft.vehiculo.year = action.year  ?? null;
       })
     );
   }
@@ -228,7 +268,7 @@ export class UserState {
   modifyUserVehicleModelo(ctx: StateContext<UserStateModel>, action: ModifyUserVehicleModelo): UserStateModel {
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.vehiculo.modelo = action.modelo;
+        draft.vehiculo.modelo = action.modelo  ?? null;
       })
     );
   }
@@ -237,7 +277,7 @@ export class UserState {
   modifyUserVehicleVersion(ctx: StateContext<UserStateModel>, action: ModifyUserVehicleVersion): UserStateModel {
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.vehiculo.version = action.version;
+        draft.vehiculo.version = action.version  ?? null;
       })
     );
   }

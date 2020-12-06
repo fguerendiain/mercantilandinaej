@@ -1,0 +1,16 @@
+<div class="card d-felx justify-content-center align-content-center">
+    <app-coverage-card-body [coverage]="coverage"></app-coverage-card-body>
+    <div class="card-footer d-flex justify-content-center align-content-center">
+        <button type="button" class="btn btn-primary" (click)="setCoverage()" [disabled]="coverage.codigoProducto === (choice$ | async)">
+        <div *ngIf="!(coverage.codigoProducto === (choice$ | async)) else selection">
+          {{selectBtnLable}}
+        </div>
+      </button>
+    </div>
+</div>
+
+
+
+<ng-template #selection>
+    <img class="selection" src="../../../../../../assets/choice.png" alt="">
+</ng-template>

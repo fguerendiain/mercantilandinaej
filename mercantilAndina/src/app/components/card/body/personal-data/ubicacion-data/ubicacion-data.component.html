@@ -1,0 +1,35 @@
+<app-validation-error-lable [errorMsg]="provinciaErrMsg"></app-validation-error-lable>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text">{{provinciaLable}}<div *ngIf="provinciaNgModel else requiredField"></div></span>
+    </div>
+    <select class="custom-select" id="inputGroupSelectProvincia" ng-required="true" [compareWith]="defaultSelectItem" [(ngModel)]="provinciaNgModel" (ngModelChange)="onSetProvincia()">
+        <option *ngFor="let provincia of provinciasList$ | async" [ngValue]="provincia">{{provincia.desc}}</option>
+      </select>
+    <div *ngIf="!(provinciasList$ | async).length" class="input-group-prepend">
+        <span class="input-group-text  p-0"><button type="button" class="btn p-0" (click)="onReloadService()"><i class="fas fa-sync"></i></button>
+        </span>
+    </div>
+</div>
+<app-validation-error-lable [errorMsg]="municipioErrMsg"></app-validation-error-lable>
+<div class="input-group mb-3" *ngIf="provinciaNgModel">
+    <div class="input-group-prepend">
+        <span class="input-group-text">{{municipioLable}}<div *ngIf="municipioNgModel else requiredField"></div></span>
+    </div>
+    <select class="custom-select" id="inputGroupSelectMunicipio" ng-required="true" [compareWith]="defaultSelectItem" [(ngModel)]="municipioNgModel" (ngModelChange)="onSetmunicipio()">
+        <option *ngFor="let municipio of municipiosList$ | async" [ngValue]="municipio">{{municipio.desc}}</option>
+      </select>
+</div>
+<div class="input-group mb-3" *ngIf="provinciaNgModel && municipioNgModel">
+    <div class="input-group-prepend">
+        <span class="input-group-text">{{domicilioLable}}<div *ngIf="domicilioNgModel else requiredField"></div></span>
+    </div>
+    <input type="text" class="form-control" maxlength="30" [(ngModel)]="domicilioNgModel" (change)="onSetdomicilio()">
+</div>
+
+
+<ng-template #requiredField>
+    <div class="must">
+        *
+    </div>
+</ng-template>

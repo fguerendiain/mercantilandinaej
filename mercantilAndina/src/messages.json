@@ -9,6 +9,7 @@
     "ErrorValidUserName": "El nombre de usuario no es valido",
     "ErrorValidUserNameToShort": "El nombre de usuario proporcionado es muy corto",
     "ErrorValidUserNameToLong": "El nombre de usuario proporcionado es muy largo",
+    "ErrorValidUserNameFalse": "El nombre de usuario no esta disponible",
     "ErrorGetInsuranceCoverage": "Ocurrio un error al obtener coberturas",
     "ErrorGetProvincias": "Ocurrio un error al obtener el listado de provincias",
     "ErrorGetMunicipios": "Ocurrio un error al obtener los municipios",
@@ -32,8 +33,45 @@
     "ErrorValidateUserBirthDayToYoung": "Debe ser mayor de 18 años",
     "ErrorValidateUserBirthDayToOld": "Debe ser menor de 99 años",
     "ErrorValidateUserPassword": "La contraseña no es valida",
-    "ErrorValidateUserPasswordStrength": "La contraseña debe tener 8 caracteres, uno especial, ser alfanumerica con mayusculas y minusculas",
-    "PersonalDataComponentHeaderTitle": "Ingrese sus datos personales"
+    "ErrorValidateUserPasswordStrength": "La contraseña es poco segura",
+
+    "PersonalDataComponentHeaderTitle": "Ingrese sus datos personales",
+    "PersonalDataComponentDniLable": "DNI",
+    "PersonalDataComponentApellidoLable": "Apellido",
+    "PersonalDataComponentNombreLable": "Nombre",
+    "PersonalDataComponentEmailLable": "E-mail",
+    "PersonalDataComponentCelularLable": "Celular",
+    "PersonalDataComponentTelefonoLable": "Telefono",
+    "PersonalDataComponentFechNacLable": "Fecha Nac.",
+    "PersonalDataComponentUsuarioLable": "Usuario",
+    "PersonalDataComponentPasswordLable": "Contraseña",
+
+    "UbicacionDataComponentProvinciaLable": "Provincia",
+    "UbicacionDataComponentMunicipioLable": "Ciudad",
+    "UbicacionDataComponentDomicilioLable": "Domicilio",
+
+    "VehicleDataComponentHeaderTitle": "Seleccione los datos de su vehiculo",
+    "VehicleDataComponentHeaderMarcaLable": "Marca",
+    "VehicleDataComponentHeaderYearLable": "Año",
+    "VehicleDataComponentHeaderModeloLable": "Modelo",
+    "VehicleDataComponentHeaderVersionLable": "Versión",
+
+    "DetailSummaryComponentHeaderTitle": "Por favor verifique que sus datos sean correctos",
+
+    "CoverageSelectComponentHeaderTitle": "Seleccione su cobertura",
+
+    "CoverageCardComponentSelectBtnLable": "Seleccionar",
+
+    "DetailSummaryComponentWarningTitle": "¡Atencion!",
+    "DetailSummaryComponentWarningMessage": "Es necesario completar todos los campos obligatorios.",
+    "DetailSummaryComponentSubmmitBtnLable": "Enviar Solicitud de Alta",
+    "DetailSummaryComponentModalTitleLable": "Procesando alta de usuario",
+    "DetailSummaryComponentModalTitleLableFinal": "Operacion exitosa",
+    "DetailSummaryComponentModalMessage1": "Validando datos",
+    "DetailSummaryComponentModalMessage2": "Enviando solicitud",
+    "DetailSummaryComponentModalMessage3": "Autorizacion en curso",
+    "DetailSummaryComponentModalMessage4": "Se realizo el alta correctamente",
+    "DetailSummaryComponentCloseModalBtnLable": "Aceptar"
 
 
 }
