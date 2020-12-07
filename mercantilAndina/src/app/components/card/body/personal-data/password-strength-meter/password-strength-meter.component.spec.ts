@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PasswordStrengthMeterComponent } from './password-strength-meter.component';
@@ -8,7 +9,10 @@ describe('PasswordStrengthMeterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PasswordStrengthMeterComponent ]
+      declarations: [ PasswordStrengthMeterComponent ],
+      imports: [
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   });

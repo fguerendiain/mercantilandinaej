@@ -1,15 +1,9 @@
 import { UserStateModel} from './user.models';
 import { Coverage, CodeDescription } from '../entities/General.model';
 
-export class InitUser {
-  static readonly type = '[User] Inicializar Usuario';
-  public constructor(public user: UserStateModel){}
-}
-
 export class DropUser {
   static readonly type = '[User] Limpiar Usuario';
 }
-
 
 export class ModifyUserDni {
   static readonly type = '[User] Modificar Usuario: dni';

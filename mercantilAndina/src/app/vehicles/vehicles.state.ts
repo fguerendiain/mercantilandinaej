@@ -7,6 +7,7 @@ import { CodeDescription } from '../entities/General.model';
 import { UserVehicle } from '../user/user.models';
 import { UserState } from '../user/user.state';
 import produce from 'immer';
+import { cpuUsage } from 'process';
 
 @State<VehicleStateModel>({
   name: 'vehicles',
@@ -20,35 +21,6 @@ import produce from 'immer';
 
 @Injectable()
 export class VehicleState {
-
-  static GetBrandById(idBrand: string): (state: VehicleStateModel) => string {
-    return createSelector(
-      [VehicleState],
-      (state: VehicleStateModel) => {
-        state.marcas.forEach((brand) => {
-          if(brand.codigo === idBrand){
-            return brand.desc;
-          }
-        });
-        return null;
-      }
-    );
-  }
-
-  static GetVersionById(idVersion: string): (state: VehicleStateModel) => string {
-    return createSelector(
-      [VehicleState],
-      (state: VehicleStateModel) => {
-        state.versiones.forEach((ver) => {
-          if(ver.codigo === idVersion){
-            return ver.desc;
-          }
-        });
-        return null;
-      }
-    );
-  }
-
 
   @Selector()
   static GetMarcas(state: VehicleStateModel): CodeDescription[] {
@@ -93,33 +65,22 @@ export class VehicleState {
 
   @Action(InitVehicleModels)
   async initVehicleModels(ctx: StateContext<VehicleStateModel>): Promise<VehicleStateModel> {
-    const modelsArray: string[] = [];
     const userVehicle: UserVehicle = this.store.selectSnapshot(UserState.GetUserVehicleDetail);
     const result = await this.service.getCarModels(userVehicle.marca.codigo, userVehicle.year);
-    result.forEach((mod) => {
-      modelsArray.push(mod);
-    });
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.modelos = modelsArray;
+        draft.modelos = result;
       })
     );
   }
 
   @Action(InitVehicleVersions)
   async initVehicleVersions(ctx: StateContext<VehicleStateModel>): Promise<VehicleStateModel> {
-    const versionsArray: CodeDescription[] = [];
     const userVehicle: UserVehicle = this.store.selectSnapshot(UserState.GetUserVehicleDetail);
     const result = await this.service.getCarVersion(userVehicle.marca.codigo, userVehicle.year, userVehicle.modelo);
-    result.forEach((ver) => {
-      versionsArray.push({
-        codigo: ver.codigo,
-        desc: ver.desc
-      });
-    });
     return ctx.setState(
       produce(ctx.getState(), draft => {
-        draft.versiones = versionsArray;
+        draft.versiones = result;
       })
     );
   }

@@ -1,4 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxsModule } from '@ngxs/store';
+import { ProvinciasState } from 'src/app/provincias/provincias.state';
+import { UserState } from 'src/app/user/user.state';
 
 import { PersonalDataComponent } from './personal-data.component';
 
@@ -8,7 +12,16 @@ describe('PersonalDataComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonalDataComponent ]
+      declarations: [ PersonalDataComponent ],
+      imports: [
+        NgxsModule.forRoot([UserState, ProvinciasState], {
+          selectorOptions: {
+            suppressErrors: false,
+            injectContainerState: false
+          }
+        }),
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   });
