@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, StateContext, Action, Selector } from '@ngxs/store';
 import { DropUser,
-         InitUser,
          ModifyUserApellido,
          ModifyUserNombre,
          ModifyUserEmail,
@@ -20,11 +19,7 @@ import { DropUser,
 import { UserStateModel, UserVehicle } from './user.models';
 import produce from 'immer';
 import { ModifyUserProvincia, ModifyUserCiudad, ModifyUserDomicilio } from './user.actions';
-import { VehicleState } from '../vehicles/vehicles.state';
-import { ProvinciasState } from '../provincias/provincias.state';
-import { VehicleStateModel } from '../vehicles/vehicles.models';
-import { ProvinciasStateModel } from '../provincias/provincias.models';
-import { Municipio, CodeDescription } from '../entities/General.model';
+import { CodeDescription } from '../entities/General.model';
 
 const def: UserStateModel =  {
   usuario: {
@@ -110,15 +105,6 @@ export class UserState {
   }
 
   constructor() { }
-
-  @Action(InitUser)
-  initUserState(ctx: StateContext<UserStateModel>, action: InitUser): UserStateModel {
-      return ctx.setState({
-        usuario: action.user.usuario,
-        vehiculo: action.user.vehiculo,
-        cobertura: action.user.cobertura
-      });
-  }
 
   @Action(DropUser)
   DropUserState(ctx: StateContext<UserStateModel>): UserStateModel {

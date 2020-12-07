@@ -19,34 +19,6 @@ import { state } from '@angular/animations';
 @Injectable()
 export class ProvinciasState {
 
-  static GetProvinciaById(idProvincia: string): (state: ProvinciasStateModel) => string {
-    return createSelector(
-      [ProvinciasState],
-      (state: ProvinciasStateModel) => {
-        state.provincias.forEach((prov) => {
-          if (prov.codigo === idProvincia){
-            return prov.desc;
-          }
-        });
-        return null;
-      }
-    );
-  }
-
-  static GetMunicipalidadById(idMunicipalidad: string): (state: ProvinciasStateModel) => string {
-    return createSelector(
-      [ProvinciasState],
-      (state: ProvinciasStateModel) => {
-        state.municipios.forEach((muni) => {
-          if (muni.codigo === idMunicipalidad){
-            return muni.desc;
-          }
-        });
-        return null;
-      }
-    );
-  }
-
   @Selector()
   static GetProvincias(state: ProvinciasStateModel): CodeDescription[] {
     return state.provincias;

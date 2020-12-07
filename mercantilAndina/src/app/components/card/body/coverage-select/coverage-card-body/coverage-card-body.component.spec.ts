@@ -19,7 +19,4 @@ describe('CoverageCardBodyComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

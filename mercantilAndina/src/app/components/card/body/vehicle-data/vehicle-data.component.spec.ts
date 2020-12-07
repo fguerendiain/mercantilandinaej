@@ -1,4 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from 'src/app/user/user.state';
+import { VehicleState } from 'src/app/vehicles/vehicles.state';
 
 import { VehicleDataComponent } from './vehicle-data.component';
 
@@ -8,7 +12,17 @@ describe('VehicleDataComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VehicleDataComponent ]
+      declarations: [ VehicleDataComponent ],
+      imports: [
+        NgxsModule.forRoot([UserState, VehicleState], {
+          selectorOptions: {
+            suppressErrors: false,
+            injectContainerState: false
+          }
+        }),
+        HttpClientTestingModule
+      ]
+
     })
     .compileComponents();
   });
